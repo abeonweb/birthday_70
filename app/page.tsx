@@ -1,65 +1,125 @@
-import Image from "next/image";
+
+import { Timeline } from '@/components/Timeline';
+import { Gallery } from '@/components/Gallery';
+import { 
+  DAD_NAME, 
+  PROGRAM_DATA, 
+  PHOTO_DATA, 
+  SPECIAL_MENTIONS 
+} from '@/constants';
+import { Heart, ChevronDown } from 'lucide-react';
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="max-w-md mx-auto min-h-screen shadow-xl bg-[#FDFBF7] pb-20 relative">
+      
+      {/* Hero Section */}
+      <section className="relative h-[85vh] flex flex-col items-center justify-center px-8 text-center bg-[#1A2E44] overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-10 left-7 w-24 h-24 border-t-2 border-l-2 border-[#C5A059] opacity-40"/>
+        <div className="absolute bottom-10 right-7 w-24 h-24 border-b-2 border-r-2 border-[#C5A059] opacity-40"/>
+        
+        <div className="z-10 animate-in fade-in slide-in-from-bottom-8 duration-1000">
+          <p className="text-[#C5A059] font-medium tracking-[0.3em] uppercase mb-4 text-sm">
+            A Milestone Celebration
+          </p>
+          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 leading-tight">
+            Celebrating 70 Years of {DAD_NAME}
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-white/70 text-base sm:text-lg italic max-w-xs mx-auto">
+            Program of Events & Cherished Memories
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="absolute bottom-12 flex flex-col items-center space-y-2 animate-bounce opacity-50">
+          <span className="text-white text-xs uppercase tracking-widest">Scroll to explore</span>
+          <ChevronDown className="text-white w-6 h-6" />
         </div>
-      </main>
+        
+        {/* Subdued Background Placeholder (Lightweight) */}
+        <div 
+          className="absolute inset-0 opacity-20 pointer-events-none"
+          style={{
+            backgroundImage: 'url("https://www.transparenttextures.com/patterns/cream-paper.png")',
+          }}
+        ></div>
+      </section>
+
+      {/* Intro Message */}
+      <section className="py-16 px-8 text-center bg-stone-50 border-b border-stone-200">
+        <Heart className="w-8 h-8 text-[#C5A059] mx-auto mb-6 opacity-80" />
+        <h2 className="text-3xl mb-4 text-stone-800">Welcome</h2>
+        <p className="text-stone-600 leading-relaxed text-lg">
+          We are so glad you could join us today to celebrate {DAD_NAME}&apos;s 70th trip around the sun. 
+          Your presence means the world to our family.
+        </p>
+      </section>
+
+      {/* Program Section */}
+      <section className="py-20 px-6">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl mb-2 text-stone-800">Program</h2>
+          <div className="w-12 h-1 bg-[#C5A059] mx-auto mb-4"></div>
+          <p className="text-stone-500 text-sm uppercase tracking-widest">Order of Events</p>
+        </div>
+        <Timeline events={PROGRAM_DATA} />
+      </section>
+
+      {/* Photo Section */}
+      <section className="py-20 bg-stone-50 border-y border-stone-200">
+        <div className="text-center mb-12 px-6">
+          <h2 className="text-4xl mb-2 text-stone-800">70 Years in Pictures</h2>
+          <div className="w-12 h-1 bg-[#C5A059] mx-auto mb-4"></div>
+          <p className="text-stone-500 text-sm uppercase tracking-widest px-4">From early beginnings to recent adventures</p>
+        </div>
+        <div className="px-4">
+          <Gallery groups={PHOTO_DATA} />
+        </div>
+      </section>
+
+      {/* Special Mentions Section */}
+      <section className="py-20 px-8">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl text-stone-800">Special Mentions</h2>
+          <div className="w-8 h-px bg-stone-300 mx-auto mt-4"></div>
+        </div>
+        
+        <div className="space-y-6">
+          {SPECIAL_MENTIONS.map((mention, index) => (
+            <div key={index} className="p-6 rounded-2xl bg-white border border-stone-100 shadow-sm flex flex-col items-center text-center">
+              <span className="text-[#C5A059] font-bold text-xs uppercase tracking-widest mb-2">
+                {mention.role}
+              </span>
+              <h4 className="text-xl font-bold text-stone-800 mb-1">{mention.name}</h4>
+              {mention.note && (
+                <p className="text-stone-500 italic text-sm">{mention.note}</p>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Closing Section */}
+      <footer className="py-24 px-10 text-center bg-[#1A2E44] text-white">
+        <Heart className="w-8 h-8 text-[#C5A059] mx-auto mb-8 fill-[#C5A059]" />
+        <h2 className="text-3xl mb-6">Thank You</h2>
+        <p className="text-white/80 leading-relaxed text-lg mb-12 italic">
+          &rdquo;The greatest gift of life is friendship, and I have received it.&ldquo;
+        </p>
+        <p className="text-sm uppercase tracking-[0.2em] text-[#C5A059]">
+          With Love, The Family
+        </p>
+        <div className="mt-20 pt-8 border-t border-white/10 text-white/40 text-xs">
+          © 2025 {DAD_NAME}&apos;s 70th Anniversary
+        </div>
+      </footer>
+
+      {/* Sticky Bottom Bar (Simple Cues) */}
+      <div className="fixed bottom-0 left-0 right-0 max-w-md mx-auto px-4 py-3 bg-white/95 backdrop-blur-sm border-t border-stone-100 flex items-center justify-between text-xs text-stone-400 font-medium z-50">
+        <span>EST. 1955</span>
+        <span className="uppercase tracking-widest text-[#C5A059]">{DAD_NAME} is 70</span>
+        <span>OCT 2025</span>
+      </div>
     </div>
   );
-}
+};
