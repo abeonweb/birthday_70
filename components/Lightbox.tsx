@@ -27,16 +27,32 @@ export const Lightbox: React.FC<LightboxProps> = ({
   return (
     <div className="fixed inset-0 z-100 flex flex-col bg-black/95 animate-in fade-in duration-300">
       {/* Header */}
-      <div className="flex items-center justify-between p-4 text-white z-10">
-        <span className="text-sm font-medium opacity-80">{photo.caption}</span>
-        <button
-          onClick={onClose}
-          className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors"
-          aria-label="Close"
-        >
-          <X className="w-6 h-6" />
-        </button>
-      </div>
+      {photo.caption && (
+        <div className="flex items-center justify-between p-4 text-white z-10">
+          <span className="text-sm font-medium opacity-80">
+            {photo.caption}
+          </span>
+          <button
+            onClick={onClose}
+            className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors"
+            aria-label="Close"
+          >
+            <X className="w-6 h-6" />
+          </button>
+        </div>
+      )}
+
+      {!photo.caption && (
+        <div className="flex justify-end p-4 text-white z-10">
+          <button
+            onClick={onClose}
+            className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors"
+            aria-label="Close"
+          >
+            <X className="w-6 h-6" />
+          </button>
+        </div>
+      )}
 
       {/* Main Image */}
       <div className="flex-1 relative flex items-center justify-center p-4">
@@ -57,7 +73,7 @@ export const Lightbox: React.FC<LightboxProps> = ({
           width={1200}
           height={600}
           src={photo.url}
-          alt={photo.caption || "Full size photo"}
+          alt="Full size photo"
           className="max-w-full max-h-full object-contain shadow-2xl rounded-sm"
         />
 
@@ -76,14 +92,24 @@ export const Lightbox: React.FC<LightboxProps> = ({
       </div>
 
       {/* Footer / Caption */}
-      <div className="p-8 text-center bg-linear-to-t from-black to-transparent">
-        <p className="text-white text-lg font-medium max-w-lg mx-auto italic">
-          {photo.caption}
-        </p>
-        <p className="text-white/40 text-xs mt-4 uppercase tracking-widest">
-          Tap outside or close to exit
-        </p>
-      </div>
+      {photo.caption && (
+        <div className="p-8 text-center bg-linear-to-t from-black to-transparent">
+          <p className="text-white text-lg font-medium max-w-lg mx-auto italic">
+            {photo.caption}
+          </p>
+          <p className="text-white/40 text-xs mt-4 uppercase tracking-widest">
+            Tap outside or close to exit
+          </p>
+        </div>
+      )}
+
+      {!photo.caption && (
+        <div className="p-4 text-center">
+          <p className="text-white/40 text-xs uppercase tracking-widest">
+            Tap outside or close to exit
+          </p>
+        </div>
+      )}
 
       {/* Overlay to close by tapping background */}
       <div className="absolute inset-0 -z-1" onClick={onClose} />

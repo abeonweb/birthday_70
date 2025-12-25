@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useCallback } from 'react';
-import { PhotoGroup, Photo } from '@/types';
-import { Lightbox } from '@/components/Lightbox';
+import React, { useState, useCallback } from "react";
+import { PhotoGroup, Photo } from "@/types";
+import { Lightbox } from "@/components/Lightbox";
 import Image from "next/image";
 
 interface GalleryProps {
@@ -11,7 +11,10 @@ interface GalleryProps {
 
 export const Gallery: React.FC<GalleryProps> = ({ groups }) => {
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
-  const [currentIndex, setCurrentIndex] = useState<{ groupIdx: number, photoIdx: number } | null>(null);
+  const [currentIndex, setCurrentIndex] = useState<{
+    groupIdx: number;
+    photoIdx: number;
+  } | null>(null);
 
   const openLightbox = (groupIdx: number, photoIdx: number) => {
     setCurrentIndex({ groupIdx, photoIdx });
@@ -23,38 +26,41 @@ export const Gallery: React.FC<GalleryProps> = ({ groups }) => {
     setCurrentIndex(null);
   };
 
-  const navigate = useCallback((direction: 'prev' | 'next') => {
-    if (!currentIndex) return;
+  const navigate = useCallback(
+    (direction: "prev" | "next") => {
+      if (!currentIndex) return;
 
-    let { groupIdx, photoIdx } = currentIndex;
-    
-    if (direction === 'next') {
-      if (photoIdx < groups[groupIdx].photos.length - 1) {
-        photoIdx++;
-      } else if (groupIdx < groups.length - 1) {
-        groupIdx++;
-        photoIdx = 0;
-      } else {
-        // Loop to start
-        groupIdx = 0;
-        photoIdx = 0;
-      }
-    } else {
-      if (photoIdx > 0) {
-        photoIdx--;
-      } else if (groupIdx > 0) {
-        groupIdx--;
-        photoIdx = groups[groupIdx].photos.length - 1;
-      } else {
-        // Loop to end
-        groupIdx = groups.length - 1;
-        photoIdx = groups[groupIdx].photos.length - 1;
-      }
-    }
+      let { groupIdx, photoIdx } = currentIndex;
 
-    setCurrentIndex({ groupIdx, photoIdx });
-    setSelectedPhoto(groups[groupIdx].photos[photoIdx]);
-  }, [currentIndex, groups]);
+      if (direction === "next") {
+        if (photoIdx < groups[groupIdx].photos.length - 1) {
+          photoIdx++;
+        } else if (groupIdx < groups.length - 1) {
+          groupIdx++;
+          photoIdx = 0;
+        } else {
+          // Loop to start
+          groupIdx = 0;
+          photoIdx = 0;
+        }
+      } else {
+        if (photoIdx > 0) {
+          photoIdx--;
+        } else if (groupIdx > 0) {
+          groupIdx--;
+          photoIdx = groups[groupIdx].photos.length - 1;
+        } else {
+          // Loop to end
+          groupIdx = groups.length - 1;
+          photoIdx = groups[groupIdx].photos.length - 1;
+        }
+      }
+
+      setCurrentIndex({ groupIdx, photoIdx });
+      setSelectedPhoto(groups[groupIdx].photos[photoIdx]);
+    },
+    [currentIndex, groups]
+  );
 
   return (
     <div className="space-y-12">
@@ -67,7 +73,7 @@ export const Gallery: React.FC<GalleryProps> = ({ groups }) => {
             </h3>
             <div className="h-px flex-1 bg-stone-200"></div>
           </div>
-          
+
           <div className="grid grid-cols-3 gap-2 px-1">
             {group.photos.map((photo, photoIdx) => (
               <button
@@ -79,7 +85,7 @@ export const Gallery: React.FC<GalleryProps> = ({ groups }) => {
                   width={400}
                   height={400}
                   src={photo.url}
-                  alt={photo.caption || "Thumbnail"}
+                  alt="Photo"
                   className="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-80"
                   loading="lazy"
                 />
@@ -97,8 +103,8 @@ export const Gallery: React.FC<GalleryProps> = ({ groups }) => {
         <Lightbox
           photo={selectedPhoto}
           onClose={closeLightbox}
-          onPrev={() => navigate('prev')}
-          onNext={() => navigate('next')}
+          onPrev={() => navigate("prev")}
+          onNext={() => navigate("next")}
         />
       )}
     </div>

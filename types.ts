@@ -4,7 +4,7 @@ export interface ProgramEvent {
   time: string;
   title: string;
   description?: string;
-  icon: 'clock' | 'mic' | 'cake' | 'music' | 'camera'| 'group' | 'prayer';
+  icon: "clock" | "mic" | "cake" | "music" | "camera" | "group" | "prayer";
 }
 
 export interface PhotoGroup {
@@ -16,7 +16,6 @@ export interface Photo {
   id: string;
   url: StaticImageData;
   caption?: string;
-  thumbnailUrl: string;
 }
 
 export interface SpecialMention {
