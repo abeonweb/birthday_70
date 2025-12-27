@@ -2,10 +2,9 @@ import React from "react";
 import { Clock, Mic, Cake, Music, Camera, Heart, Users } from "lucide-react";
 import { ProgramEvent, PhotoGroup, SpecialMention } from "@/types";
 import Photo1 from "@/public/photo_1.jpg";
-import Photo2 from "@/public/photo_2.jpg";
-import Photo3 from "@/public/photo_3.jpg";
+import Photo3 from "@/public/photo_3.png";
 import Photo4 from "@/public/photo_4.jpg";
-import Photo5 from "@/public/photo_5.jpg";
+import Photo5 from "@/public/photo_5.png";
 import Photo6 from "@/public/photo_6.jpg";
 import Photo7 from "@/public/photo_7.jpg";
 import Photo8 from "@/public/photo_8.jpg";
@@ -17,7 +16,6 @@ import Photo13 from "@/public/photo_13.jpg";
 import Photo14 from "@/public/photo_14.jpg";
 import Photo15 from "@/public/photo_15.jpg";
 import Photo16 from "@/public/photo_16.jpg";
-import Photo17 from "@/public/photo_17.jpg";
 import Photo18 from "@/public/photo_18.jpg";
 import Photo19 from "@/public/photo_19.jpg";
 import Photo20 from "@/public/photo_20.jpg";
@@ -130,10 +128,6 @@ export const PHOTO_DATA: PhotoGroup[] = [
         url: Photo1,
       },
       {
-        id: "c2",
-        url: Photo2,
-      },
-      {
         id: "c3",
         url: Photo3,
       },
@@ -188,10 +182,6 @@ export const PHOTO_DATA: PhotoGroup[] = [
       {
         id: "r7",
         url: Photo16,
-      },
-      {
-        id: "r8",
-        url: Photo17,
       },
       {
         id: "r9",
@@ -290,13 +280,7 @@ export const PHOTO_DATA: PhotoGroup[] = [
 ];
 
 export const SPECIAL_MENTIONS: SpecialMention[] = [
-  { role: "MC", name: "Mrs Shola Adewale", note: "" },
-  // { role: "Key Speakers", name: "Mr Name Lastname", note: "Children's tribute" },
-  // {
-  //   role: "Acknowledgements",
-  //   name: "Name Lastname",
-  //   note: "For hosting us tonight",
-  // },
+  { role: "MC", name: "Mrs Shola Adewale", note: "MC J-Swag 08033078617" },
 ];
 
 export const ICON_MAP = {
