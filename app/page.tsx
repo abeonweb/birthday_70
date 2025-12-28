@@ -118,7 +118,7 @@ export default function Home() {
       <div className="fixed bottom-0 left-0 right-0 max-w-md mx-auto px-4 py-3 bg-white/95 backdrop-blur-sm border-t border-stone-100 flex items-center justify-between text-xs text-stone-400 font-medium z-50">
         <span>EST. 1955</span>
         <span className="uppercase tracking-widest text-[#C5A059]">{DAD_NAME} is 70</span>
-        <span>OCT 2025</span>
+        <span>DEC 2025</span>
       </div>
     </div>
   );
